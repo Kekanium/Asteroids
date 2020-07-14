@@ -7,9 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Ship : MonoBehaviour
 {
-    //screen wrapping support
-    private float _colliderRadius;
-
     //thrust and rotation support
     private Rigidbody2D _rigidbody2D;
     [Range(0, 10)] public float thrustForce = 5f;
@@ -19,11 +16,7 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
-        _colliderRadius = GetComponent<CircleCollider2D>().radius;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        
-        
-       
     }
 
     private void FixedUpdate()
@@ -57,5 +50,9 @@ public class Ship : MonoBehaviour
             _thrustDirection.x = Mathf.Cos(zRotation);
             _thrustDirection.y = Mathf.Sin(zRotation);
         }
+
+        if (Math.Abs(_rigidbody2D.angularVelocity) > Single.Epsilon)
+            _rigidbody2D.angularVelocity = 0;
     }
+    
 }
