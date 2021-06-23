@@ -2,11 +2,9 @@
 
 public class Asteroids : MonoBehaviour
 {
-    private Rigidbody2D _rigidBody2D;
-    [Header("Min/Max Impulse force(Min<Max)")]
-    private const float minImpulseForce = 3f;
+    private const float MinImpulseForce = 3f;
 
-    private const float maxImpulseForce = 5f;
+    private const float MaxImpulseForce = 5f;
     private void Start()
     {
         
@@ -14,8 +12,8 @@ public class Asteroids : MonoBehaviour
         Vector2 direction;
         direction=new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
         float magnitude;
-        magnitude = Random.Range(minImpulseForce, maxImpulseForce);
-        (_rigidBody2D = GetComponent<Rigidbody2D>()).AddForce(direction*magnitude,ForceMode2D.Impulse);
+        magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
+        GetComponent<Rigidbody2D>().AddForce(direction*magnitude,ForceMode2D.Impulse);
 
     }
 }
